@@ -17,8 +17,6 @@ app.add_middleware(
 # User router
 app.include_router(user.router)
 
-app.include_router()
-
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
