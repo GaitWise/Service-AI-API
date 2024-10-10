@@ -4,5 +4,5 @@ router = APIRouter()
 
 @router.get("/test")
 def test_def():
-    a= 10
+    a= 12
     return a
