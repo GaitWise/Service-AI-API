@@ -8,17 +8,22 @@ from services.smartgait_services import process_smartgait
 class SmartGaitRequest(BaseModel):
     walkingId: str
     height: str
-    weight: float
-    type: str
+    weight: str
+    weight_type: str
 
 router = APIRouter()
 
 @router.post("/smartgait")
-def smartgait_def(SmartGaitRequest):
+def smartgait_def(request: SmartGaitRequest):
     try:
-        print(walkingId, height, weight)
-        response_data = process_smartgait(walkingId, height, weight)
+        walkingId = request.walkingId
+        height = request.height
+        weight = request.weight
+        weight_type = request.weight_type
+        response_data = process_smartgait(walkingId, height, weight, weight_type)
+        print('response_data: ', response_data)
         report = generate_report(response_data)
+        print('report: ', report)
         return JSONResponse(content=report, status_code=200)
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)

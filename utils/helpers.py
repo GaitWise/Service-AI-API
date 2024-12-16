@@ -33,18 +33,21 @@ def calculate_steps(acc_z):
 # Parameters: steps (int): 걸음 수, height (float): 키 (m)
 # Returns: float: 총 이동 거리 (m)
 def calculate_distance(steps, height):
+    height = float(height)
     stride_length = height * 0.415 
     return steps * stride_length
-
 
 # [Function] 에너지 소비량 계산
 # Parameters: weight (float): 체중 (kg), walking_time (str): 걸은 시간 ("분:초" 형식)
 # Returns: float: 소모된 칼로리 (kcal)
 def calculate_calories(weight, walking_time):
+    weight = float(weight)
+    print(weight)
     minutes, seconds = map(int, walking_time.split(":"))
     time_in_hours = (minutes + (seconds / 60)) / 60 
     METs = 3.5  
     calories_burned = METs * weight * time_in_hours  
+    print(calories_burned)
     return round(calories_burned, 2) 
 
 

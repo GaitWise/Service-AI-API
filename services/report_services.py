@@ -55,7 +55,7 @@ def generate_report(response_data, model_name='llama3'):
         input_variables=["steps", "distance", "calories", "balance_score", "gait_status", "training_recommendation", "retrieved_content"],
         template=template
     )
-
+    
     # LLM 설정
     llm = get_llm(model_name=model_name)
 

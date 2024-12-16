@@ -49,14 +49,14 @@ def process_walking_data(db, walking_data):
 
 # [Function] Smart Gait 데이터를 처리하고 결과 반환
 # Returns: dict: 걸음 수, 거리, 칼로리, 균형 점수, 걸음 상태 및 추천 훈련 데이터
-def process_smartgait():
+def process_smartgait(walkingId, height, weight, weight_type):
     db = DB_Connect()
-    object_id = "674ac22efcc66ba27ca73258"
-    height = 1.7
-    weight = 70
+    print('IN')
 
-    walking_data = get_walking_data(db, object_id)
+    walking_data = get_walking_data(db, walkingId)
+    print('walking_data', walking_data)
     processed_data = process_walking_data(db, walking_data)
+    print('processed_data', processed_data)
 
     acc_values = processed_data.get("acc", [])
     gyro_values = processed_data.get("gyro", [])
