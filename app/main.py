@@ -1,9 +1,12 @@
 from fastapi import FastAPI
-from app.routers import user
+from app.routers import smartgait
+from database.dbconnet import DB_Connect
 from fastapi.middleware.cors import CORSMiddleware
 
-
 app = FastAPI()
+
+# MongoDB 데이터베이스 가져오기
+db = DB_Connect()
 
 # CORS 설정 추가
 app.add_middleware(
@@ -14,9 +17,5 @@ app.add_middleware(
     allow_headers=["*"],  # 모든 헤더를 허용합니다
 )
 
-# User router
-app.include_router(user.router)
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+#Smartgait router
+app.include_router(smartgait.router)
