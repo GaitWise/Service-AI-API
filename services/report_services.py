@@ -57,11 +57,12 @@ def generate_report(response_data, model_name='llama3'):
     )
     
     # LLM 설정
-    llm = get_llm(model_name=model_name)
+    llm = get_llm(model_name='gpt')
+    print(llm)
+   
 
     # RunnableMap 사용
     sequence = RunnableMap({"llm": llm})
-
     data = {
         "steps": response_data['steps'],
         "distance": response_data['distance'],
@@ -71,8 +72,9 @@ def generate_report(response_data, model_name='llama3'):
         "training_recommendation": response_data['training_recommendation'],
         "retrieved_content": web_content  
     }
-    
+   
     formatted_prompt = prompt.format(**data)
     report = sequence.invoke(formatted_prompt)['llm']
-    return report
+    content = report.content
+    return content
 

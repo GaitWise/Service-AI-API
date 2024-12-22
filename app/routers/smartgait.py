@@ -21,9 +21,12 @@ def smartgait_def(request: SmartGaitRequest):
         weight = request.weight
         weight_type = request.weight_type
         response_data = process_smartgait(walkingId, height, weight, weight_type)
-        print('response_data: ', response_data)
         report = generate_report(response_data)
-        print('report: ', report)
-        return JSONResponse(content=report, status_code=200)
+
+        combined_response = {
+            "report": report,
+            "data": response_data
+        }
+        return JSONResponse(content=combined_response, status_code=200)
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
